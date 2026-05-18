@@ -517,10 +517,10 @@ function renderAddForm(){
   const t=currentTrip(); if(!t) return;
   document.getElementById('expPaidBy').innerHTML=t.friends.map(f=>`<option value="${f}">${f}</option>`).join('');
   document.getElementById('splitCheckboxes').innerHTML=t.friends.map(f=>`
-    <label class="friend-check selected" onclick="toggleFriend(this)">
-      <input type="checkbox" value="${f}" checked>
+    <div class="friend-check selected" onclick="toggleFriend(this)" data-name="${f}">
+      <input type="checkbox" value="${f}" checked style="display:none">
       <span class="check-dot"></span>${f}
-    </label>`).join('');
+    </div>`).join('');
   setDefaultDate();
   updateSplitPreview();
 }
