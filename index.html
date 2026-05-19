@@ -265,7 +265,7 @@ select option{background:var(--surface2)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 var Store={get:function(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
-var trips=Store.get('ts_v4')||[],currentTripId=null,editingTripId=null,activeFilter='all',selectedEmoji='airplane';
+var trips=(function(){var d=Store.get('ts_v4')||Store.get('ts_trips_v3')||Store.get('ts_trips_v2')||Store.get('ts_trips')||[];if(d.length>0)Store.set('ts_v4',d);return d;})(),currentTripId=null,editingTripId=null,activeFilter='all',selectedEmoji='airplane';
 var EMOJIS=['airplane','beach','mountain','palm','camp','train','ship','backpack','globe','island','ferris','drink','ski','dive','dart','circus','scooter','rocket','sunset','theater','lion','wave','desert','map'];
 var EMOJI_CHARS={'airplane':'&#9992;','beach':'&#127958;','mountain':'&#127956;','palm':'&#127796;','camp':'&#127957;','train':'&#128642;','ship':'&#128755;','backpack':'&#127992;','globe':'&#127758;','island':'&#127965;','ferris':'&#127905;','drink':'&#127961;','ski':'&#127938;','dive':'&#129344;','dart':'&#127919;','circus':'&#127914;','scooter':'&#128693;','rocket':'&#128640;','sunset':'&#127749;','theater':'&#127917;','lion':'&#129409;','wave':'&#127754;','desert':'&#127964;','map':'&#128506;'};
 function emojiChar(k){return EMOJI_CHARS[k]||k;}
